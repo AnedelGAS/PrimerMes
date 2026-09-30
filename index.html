@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Primer Mes 💜</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f7f3fb;
+            --card-bg: #ffffff;
+            --text-main: #2b2430;
+            --text-muted: #73677d;
+            --lilac-primary: #9b7ede;
+            --lilac-soft: #f0ebf8;
+            --border-radius: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        header .badge {
+            display: inline-block;
+            background-color: var(--lilac-soft);
+            color: var(--lilac-primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        header h1 span {
+            color: var(--lilac-primary);
+        }
+
+        /* Tarjeta de Mensaje */
+        .message-card {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 40px rgba(155, 126, 222, 0.1);
+            text-align: center;
+            border: 1px solid rgba(155, 126, 222, 0.1);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .message-card p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            line-height: 1.9;
+            font-style: italic;
+            color: var(--text-main);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .message-card .signature {
+            margin-top: 22px;
+            font-size: 1rem;
+            color: var(--lilac-primary);
+            font-weight: 600;
+            letter-spacing: 1.5px;
+        }
+
+        /* Estructura del Collage: 1 arriba (grande), 2 abajo */
+        .collage-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            animation: fadeIn 1.4s ease-out;
+        }
+
+        .photo-item {
+            background: var(--card-bg);
+            padding: 15px 15px 20px 15px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 12px 35px rgba(155, 126, 222, 0.08);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+            border: 1px solid rgba(155, 126, 222, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* La primera foto toma todo el ancho de arriba */
+        .photo-item.main-photo {
+            grid-column: span 2;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 50px rgba(155, 126, 222, 0.18);
+        }
+
+        .photo-frame {
+            width: 100%;
+            background-color: var(--lilac-soft);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: auto; /* Mantiene la proporción y calidad original de la foto */
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .photo-item:hover .photo-frame img {
+            transform: scale(1.02);
+        }
+
+        .photo-caption {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding: 0 5px;
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .photo-caption span.heart {
+            color: var(--lilac-primary);
+            font-size: 1.3rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            margin-top: 20px;
+        }
+
+        /* Animación */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive para celulares (se acomoda todo en una sola columna vertical) */
+        @media (max-width: 768px) {
+            .collage-grid {
+                grid-template-columns: 1fr;
+            }
+            .photo-item.main-photo {
+                grid-column: span 1;
+            }
+            header h1 { font-size: 2.3rem; }
+            .message-card p { font-size: 1.1rem; }
+            body { padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="badge">Nuestro Primer Mes</div>
+            <h1>30 días a tu lado, <span>mi amor</span> 💜</h1>
+        </header>
+
+        <div class="message-card">
+            <p>"Parece mentira que apenas llevamos un mes, porque contigo todo se siente tan natural y bonito desde el primer día. Gracias por cada sonrisa y por hacer mis días mucho más felices."</p>
+            <div class="signature">— Para ti, con todo mi cariño 🤍</div>
+        </div>
+
+        <div class="collage-grid">
+            <!-- Foto Principal (Solita arriba, más grande y con todo el ancho) -->
+            <div class="photo-item main-photo">
+                <div class="photo-frame">
+                    <img src="3.jpg" alt="Momento Principal" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1200&auto=format&fit=crop'">
+                </div>
+                <div class="photo-caption">
+                    <p>La novia mas guapa del mundo</p>
+                    <span class="heart">💜</span>
+                </div>
+            </div>
+
+            <!-- Foto 2 (Abajo a la izquierda) -->
+            <div class="photo-item">
+                <div class="photo-frame">
+                    <img src="1.jpg" alt="Momento 2" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=800&auto=format&fit=crop'">
+                </div>
+                <div class="photo-caption">
+                    <p>Salida juntos</p>
+                    <span class="heart">✨</span>
+                </div>
+            </div>
+
+            <!-- Foto 3 (Abajo a la derecha) -->
+            <div class="photo-item">
+                <div class="photo-frame">
+                    <img src="2.jpg" alt="Momento 3" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=800&auto=format&fit=crop'">
+                </div>
+                <div class="photo-caption">
+                    <p>Por muchos meses más a tu lado 🤍</p>
+                    <span class="heart">💜</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            Hecho con amor • Primer Mes de Novios
+        </footer>
+    </div>
+
+</body>
+</html>
